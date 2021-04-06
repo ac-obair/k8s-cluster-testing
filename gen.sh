@@ -1,3 +1,3 @@
 mkdir self-cert
-openssl genrsa -out self-cert/private-key.pem 2048 
-openssl rsa -in self-cert/private-key.pem -pubout -out self-cert/public-key.pem
+openssl genrsa -out self-cert/root-private-key.pem 2048 
+openssl req -x509 -new -nodes -key self-cert/root-private-key.pem -sha256 -days 1024 -out self-cert/root-public-crt.pem
