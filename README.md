@@ -7,3 +7,16 @@ view-role
 kured
 kube state metrics
 
+dirty key pair for testing
+```bash
+./gen.sh
+```
+new cluster
+```bash
+terraform plan && terraform apply
+```
+get nodePort url
+```
+./get_url.sh
+```
+
