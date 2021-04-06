@@ -6,11 +6,11 @@ resource kubernetes_namespace "cert-manager" {
 # ---- added by me to fill in for azure keyvault key pair
 # --context in kubectl command at line 64 has also been changed 
 data local_file "int-ca-cert" {
-  filename = "${path.module}/self-cert/public-key.pem"
+  filename = "${path.module}/self-cert/root-public-crt.pem"
 }
 data local_file "int-ca-key" {
-  filename = "${path.module}/self-cert/private-key.pem"
-}
+  filename = "${path.module}/self-cert/root-private-key.pem"
+} 
 // resource null_resource "int-ca-cert" {
 //   triggers = {
 //     manifest_sha1 = sha1(data.local_file.int-ca-cert.content)
