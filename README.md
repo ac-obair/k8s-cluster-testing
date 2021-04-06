@@ -19,4 +19,10 @@ get nodePort url
 ```
 ./get_url.sh
 ```
-
+cert-manager crds
+```
+kubectl get/describe certificate --all-namespaces
+kubectl get/describe certificaterequest --all-namespaces
+kubectl get/describe clusterissuer/issuer --all-namespaces
+kubectl get/describe order <order> --all-namespaces
+```
