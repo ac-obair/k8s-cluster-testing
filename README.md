@@ -30,7 +30,14 @@ kubectl get/describe order <order> --all-namespaces
 ### awx
 Note that the ingress url for awx can be set as part of `awx.yaml`  and needs to be added to the /etc/hosts file when testing. `127.0.0.1       kubernetes.docker.internal awx.example.com`
 
-### todo deploy awx instructions
+Deploy the awx-operator reconsiliation loop
+```
+kubectl apply -f
+```
+Deploy awx task runner 
+```
+kubectl apply -f awx.yaml
+```
 This will give you a fully working awx installation and you can connect to an external postgres db using the instructions below. 
 ```
 awx-5fbbbf7b79-7z2fk           4/4     Running   0          4h56m
@@ -42,9 +49,8 @@ Get the frontend nodePort url for connectioning to awx:
 # spits out username and password
 scripts/get-awx-login-url.sh
 ```
-
 ### external postgres
-Set up and test an external postgres db.
+Set up and test an external postgres db. Not this db can be stopped and started using `docker container stop/start <container-uid>` for testing. 
 ```
 scripts/setup-external-postgres.sh
 ```
