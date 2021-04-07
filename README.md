@@ -1,5 +1,5 @@
 Since org repos can't be forked this is based off of the aks-cluster-config/ dir of ac-iac-platform repo. Edits to remaining files have been commented.
-
+### k8s
 The following files have been removed completely:
 ```
 public-ip.tf
@@ -29,8 +29,8 @@ kubectl get/describe certificaterequest --all-namespaces
 kubectl get/describe clusterissuer/issuer --all-namespaces
 kubectl get/describe order <order> --all-namespaces
 ```
-Note that the ingress url is set as part of `awx.yaml`  and needs to be added to the /etc/hosts file when testing.
-```127.0.0.1       kubernetes.docker.internal awx.example.com```
+### awx
+Note that the ingress url for awx can be set as part of `awx.yaml`  and needs to be added to the /etc/hosts file when testing. `127.0.0.1       kubernetes.docker.internal awx.example.com`
 
 Setup [awxkit](https://docs.ansible.com/ansible-tower/latest/html/towercli/index.html) note `-k` will be required for untrusted certs. See link for full list of api commands.
 
