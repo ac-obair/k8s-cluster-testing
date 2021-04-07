@@ -1,15 +1,17 @@
-edits to remaining files have been commented in each file
+Since org repos can't be forked this is based off of the aks-cluster-config/ dir of ac-iac-platform repo. Edits to remaining files have been commented.
 
-removed files
-public ip
-filebeat
-view-role
-kured
-kube state metrics
+The following files have been removed completely:
+```
+public-ip.tf
+filebeat.tf
+view-role.tf
+kured.tf
+kube-state-metrics.tf
+```
 
 dirty key pair for testing
 ```bash
-./gen.sh
+scripts/generate-key-pair.sh
 ```
 new cluster
 ```bash
@@ -17,9 +19,10 @@ terraform plan && terraform apply
 ```
 get nodePort url
 ```
-./get_url.sh
+scripts/get-k8s-ingress-url.sh
+scripts/get-awx-login-url.sh # once deployed
 ```
-cert-manager crds
+cert-manager crds useful commands
 ```
 kubectl get/describe certificate --all-namespaces
 kubectl get/describe certificaterequest --all-namespaces
@@ -30,7 +33,7 @@ Setup [awxkit](https://docs.ansible.com/ansible-tower/latest/html/towercli/index
 
 `pip install -r requirements.txt` you can do this in a virtual env for testing
 ```bash
-. ./awxkit_env.sh
+. scripts/set-awxkit-env.sh
 ```
 Now run `awx config`
 ```json
