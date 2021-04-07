@@ -72,9 +72,8 @@ awx set up `awx ping -k`
 }
 ```
 other useful user info `awx me -k`
+```json
 {
-```
-
      "count": 1,
      "next": null,
      "previous": null,
