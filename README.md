@@ -26,26 +26,27 @@ kubectl get/describe certificaterequest --all-namespaces
 kubectl get/describe clusterissuer/issuer --all-namespaces
 kubectl get/describe order <order> --all-namespaces
 ```
-setup [awxkit](https://docs.ansible.com/ansible-tower/latest/html/towercli/index.html) 
+Setup [awxkit](https://docs.ansible.com/ansible-tower/latest/html/towercli/index.html) note `-k` will be required for untrusted certs. See link for full list of api commands.
+
 `pip install -r requirements.txt` you can do this in a virtual env for testing
 ```bash
 . ./awxkit_env.sh
 ```
-run `awx config`
+Now run `awx config`
 ```json
 {
      "base_url": "https://awx.example.com:32208",
-     "token": "",
+     "token": "JtCONrNouQwGmjwAeYepkVxA4MKWVv",
      "use_sessions": false,
      "credentials": {
           "default": {
                "username": "admin",
-               "password": "password"
+               "password": "<pass>"
           }
      }
 }
 ```
-awx set up `awx ping -k`
+Test awx is responding `awx ping -k` 
 ```json
 
 {
@@ -71,7 +72,7 @@ awx set up `awx ping -k`
      ]
 }
 ```
-other useful user info `awx me -k`
+Current user info `awx me -k`
 ```json
 {
      "count": 1,
