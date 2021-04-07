@@ -31,7 +31,7 @@ kubectl get/describe order <order> --all-namespaces
 ```
 ### awx
 Note that the ingress url for awx can be set as part of `awx.yaml`  and needs to be added to the /etc/hosts file when testing. `127.0.0.1       kubernetes.docker.internal awx.example.com`
-## <todo> deploy awx instructions
+## todo deploy awx instructions
 
 Setup [awxkit](https://docs.ansible.com/ansible-tower/latest/html/towercli/index.html) note `-k` will be required for untrusted certs. See link for full list of api commands.
 
