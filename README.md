@@ -62,6 +62,8 @@ Once patched the db migation will start, when complete this script will test the
 ```
 scripts/test-migrated-awx-db.sh
 ```
+If you remove the db entirly as if you were rebuilding it back from scratch then updating the awx.yaml or deleteing a pod causes the reconsilitation loop to rebuild the entire db back for you. This can take a few minutes. The awx endpoint will show as this in the browser: 
+<img width="702" alt="Screenshot 2021-04-07 at 18 29 46" src="https://user-images.githubusercontent.com/20089429/113910150-6c3f1f80-97d0-11eb-860c-0f27db0baedc.png">
 ### awxkit
 Setup [awxkit](https://docs.ansible.com/ansible-tower/latest/html/towercli/index.html) note `-k` will be required for untrusted certs. See link for full list of api commands.
 
