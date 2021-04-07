@@ -31,8 +31,18 @@ kubectl get/describe order <order> --all-namespaces
 ```
 ### awx
 Note that the ingress url for awx can be set as part of `awx.yaml`  and needs to be added to the /etc/hosts file when testing. `127.0.0.1       kubernetes.docker.internal awx.example.com`
-## todo deploy awx instructions
 
+### todo deploy awx instructions
+
+### external postgres
+Set up and test an external postgres db
+```
+scripts/setup-external-postgres.sh
+```
+Connect reconcilistion loop to external db test
+```
+kubectl apply -f awx-postgres-configuration.yaml
+```
 Setup [awxkit](https://docs.ansible.com/ansible-tower/latest/html/towercli/index.html) note `-k` will be required for untrusted certs. See link for full list of api commands.
 
 `pip install -r requirements.txt` you can do this in a virtual env for testing
