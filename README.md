@@ -43,6 +43,11 @@ Connect reconcilistion loop to external db test
 ```
 kubectl apply -f awx-postgres-configuration.yaml
 ```
+Once patched the db migation will start, when complete this script will test the db has been populated.
+```
+scripts/test-migrated-awx-db.sh
+```
+### awxkit
 Setup [awxkit](https://docs.ansible.com/ansible-tower/latest/html/towercli/index.html) note `-k` will be required for untrusted certs. See link for full list of api commands.
 
 `pip install -r requirements.txt` you can do this in a virtual env for testing
