@@ -29,6 +29,9 @@ kubectl get/describe certificaterequest --all-namespaces
 kubectl get/describe clusterissuer/issuer --all-namespaces
 kubectl get/describe order <order> --all-namespaces
 ```
+Note that the ingress url is set as part of `awx.yaml`  and needs to be added to the /etc/hosts file when testing.
+```127.0.0.1       kubernetes.docker.internal awx.example.com```
+
 Setup [awxkit](https://docs.ansible.com/ansible-tower/latest/html/towercli/index.html) note `-k` will be required for untrusted certs. See link for full list of api commands.
 
 `pip install -r requirements.txt` you can do this in a virtual env for testing
