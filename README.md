@@ -8,19 +8,17 @@ view-role.tf
 kured.tf
 kube-state-metrics.tf
 ```
-
-dirty key pair for testing
+Generate a dirty key pair for testing
 ```bash
 scripts/generate-key-pair.sh
 ```
-new cluster
+Set up a fresh new test cluster
 ```bash
 terraform plan && terraform apply
 ```
-get nodePort url
+Get nodePort url for k8s ingress
 ```
 scripts/get-k8s-ingress-url.sh
-scripts/get-awx-login-url.sh # once deployed
 ```
 cert-manager crds useful commands
 ```
@@ -33,7 +31,10 @@ kubectl get/describe order <order> --all-namespaces
 Note that the ingress url for awx can be set as part of `awx.yaml`  and needs to be added to the /etc/hosts file when testing. `127.0.0.1       kubernetes.docker.internal awx.example.com`
 
 ### todo deploy awx instructions
-
+get frontend nodePort url for awx with username and password
+```
+scripts/get-awx-login-url.sh
+```
 ### external postgres
 Set up and test an external postgres db
 ```
