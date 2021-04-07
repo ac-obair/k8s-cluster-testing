@@ -1,6 +1,6 @@
 Since org repos can't be forked this is based off of the aks-cluster-config/ dir of ac-iac-platform repo. Edits to remaining files have been commented.
 ### k8s
-The following files have been removed completely:
+The following ac-iac-platform files have been removed completely as they're not necessary for testing.
 ```
 public-ip.tf
 filebeat.tf
@@ -31,16 +31,17 @@ kubectl get/describe order <order> --all-namespaces
 Note that the ingress url for awx can be set as part of `awx.yaml`  and needs to be added to the /etc/hosts file when testing. `127.0.0.1       kubernetes.docker.internal awx.example.com`
 
 ### todo deploy awx instructions
+
 get frontend nodePort url for awx with username and password
 ```
 scripts/get-awx-login-url.sh
 ```
 ### external postgres
-Set up and test an external postgres db
+Set up and test an external postgres db.
 ```
 scripts/setup-external-postgres.sh
 ```
-Connect reconcilistion loop to external db test
+Connect reconcilistion loop to external db test.  Due to how /etc/hosts name are resolved the db connection string is the first name `kubernetes.docker.internal`
 ```
 kubectl apply -f awx-postgres-configuration.yaml
 ```
