@@ -1,3 +1,6 @@
+#### Note 
+This repo may container credentials these are for testing only and have no impact on production. 
+
 Since org repos can't be forked this is based off of the aks-cluster-config/ dir of ac-iac-platform repo. Edits to remaining files have been commented.
 ### k8s
 The following ac-iac-platform files have been removed completely as they're not necessary for testing.
