@@ -8,6 +8,13 @@ view-role.tf
 kured.tf
 kube-state-metrics.tf
 ```
+
+The `awx-on-docker` directory is for setting up docker outside of k8s this mimics a server installation and could potentially work with azure container instances or docker directly. 
+
+### cluster
+
+For mimicking an aks setup we first need a keypair. These steps setup a base cluster to which awx can be deployed. 
+
 Generate a dirty key pair for testing
 ```bash
 scripts/generate-key-pair.sh
@@ -30,13 +37,13 @@ kubectl get/describe order <order> --all-namespaces
 ### awx
 Note that the ingress url for awx can be set as part of `awx.yaml`  and needs to be added to the /etc/hosts file when testing. `127.0.0.1       kubernetes.docker.internal awx.example.com`
 
-Deploy the awx-operator reconsiliation loop
+Deploy the awx-operator reconsiliation loop. This is deployed to the default namespace by default.
 ```
-kubectl apply -f
+kubectl apply -f awx/awx-operator.yaml
 ```
-Deploy awx task runner 
+Deploy awx task runners
 ```
-kubectl apply -f awx.yaml
+kubectl apply -f awx/awx.yaml
 ```
 This will give you a fully working awx installation and you can connect to an external postgres db using the instructions below. 
 ```
