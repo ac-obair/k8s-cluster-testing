@@ -15,15 +15,14 @@ spec:
   tower_admin_password_secret: awx-admin-password
   tower_admin_email: archops@arnoldclark.com
   tower_ingress_type: Ingress 
-  tower_postgres_image: ""
   # service is clusterIP by default _type: Ingress changes to nodePort
   tower_web_resource_requirements:
     requests:
+      cpu: 250m
+      memory: 500Mi
+    limits:
       cpu: 500m
       memory: 1Gi
-    limits:
-      cpu: 1000m
-      memory: 2Gi
   tower_task_resource_requirements:
     requests:
       cpu: 250m
