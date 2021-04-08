@@ -1,9 +1,9 @@
 #### Note 
 This repo may container credentials these are for testing only and have no impact on production. 
 
-Since org repos can't be forked this is based off of the aks-cluster-config/ dir of ac-iac-platform repo. Edits to remaining files have been commented.
+Since org repos can't be forked this code is based off of the `aks-cluster-config/` dir of [ac-iac-platform]() repo. Edits to remaining files have been commented and private subscription added.
 ### k8s
-The following ac-iac-platform files have been removed completely as they're not necessary for testing.
+The following `ac-iac-platform` files have been removed completely as they're not necessary for testing.
 ```
 public-ip.tf
 filebeat.tf
@@ -12,8 +12,7 @@ kured.tf
 kube-state-metrics.tf
 ```
 
-The `awx-on-docker` directory is for setting up docker outside of k8s this mimics a server installation and could potentially work with azure container instances or docker directly. 
-
+The `awx-on-docker` directory is for setting up docker outside of k8s this mimics a server installation and could potentially work with azure container instances or docker directly. You can use this to edit and build source code if testing or exploring changes. 
 ### cluster
 
 For mimicking an aks setup we first need a keypair. These steps setup a base cluster to which awx can be deployed. 
@@ -57,23 +56,61 @@ awx-postgres-0                 1/1     Running   1          5h15m
 Get the frontend nodePort url for connectioning to awx:
 ```
 # spits out username and password
-scripts/get-awx-login-url.sh
+awx/scripts/get-awx-login-url.sh
 ```
 ### external postgres
-Set up and test an external postgres db. Not this db can be stopped and started using `docker container stop/start <container-uid>` for testing. 
+
+This can be done either to a docker instance external to k8s for testing or direct to azure. The appropriate connection string details have to be set in `awx/awx.yaml` assuming the db exists else the `awx-postgres-0 ` pod is used.
+
+```yaml
+#connect to azure test db server instance
+host: awx-external-postgres.postgres.database.azure.com
+port: "5432"
+database: awx
+username: psqladminun@awx-external-postgres
+password: "LetjIma1o3uQYbs2cq1GJYkI!"
+
+# connect to local docker instance (external to k8s)
+host: kubernetes.docker.internal
+port: "5432"
+database: awx
+username: awx
+password: "1234"
 ```
+#### docker
+Note this db can be stopped and started using `docker container stop/start <container-uid>` for testing. 
+```bash
 scripts/setup-external-postgres.sh
 ```
 Connect reconcilistion loop to external db test.  Due to how /etc/hosts name are resolved the db connection string is the first name `kubernetes.docker.internal`
-```
+```bash
 kubectl apply -f awx-postgres-configuration.yaml
 ```
 Once patched the db migation will start, when complete this script will test the db has been populated.
 ```
 scripts/test-migrated-awx-db.sh
 ```
+
 If you remove the db entirly as if you were rebuilding it back from scratch then updating the awx.yaml or deleteing a pod causes the reconsilitation loop to rebuild the entire db back for you. This can take a few minutes. The awx endpoint will show as this in the browser: 
 <img width="702" alt="Screenshot 2021-04-07 at 18 29 46" src="https://user-images.githubusercontent.com/20089429/113910150-6c3f1f80-97d0-11eb-860c-0f27db0baedc.png">
+
+#### azure
+
+Create a db, note that connection testing can be done by disabling the firewall rule temporarily.
+```bash
+cd awx && terraform apply
+```
+Test that to db is populated and working
+```bash
+scripts/test-external-postgre-azure.sh
+```
+View logging
+```bash
+# view migration logging
+kubectl logs awx-operator-57bcb58f5-2v7kj -f
+# view web frontend logging
+kubectl logs awx-68db7445d-xcpmr -c awx-web -f
+```
 ### awxkit
 Setup [awxkit](https://docs.ansible.com/ansible-tower/latest/html/towercli/index.html) note `-k` will be required for untrusted certs. See link for full list of api commands.
 
