@@ -38,9 +38,9 @@ metadata:
   name: awx-postgres-configuration
   namespace: default
 stringData:
-  host: kubernetes.docker.internal
+  host: awx-external-postgres.postgres.database.azure.com
   port: "5432"
   database: awx
-  username: awx
-  password: "1234"
+  username: psqladminun@awx-external-postgres
+  password: "LetjIma1o3uQYbs2cq1GJYkI!"
 type: Opaque
