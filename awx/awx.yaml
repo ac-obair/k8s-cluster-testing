@@ -15,6 +15,9 @@ spec:
   tower_admin_password_secret: awx-admin-password
   tower_admin_email: archops@arnoldclark.com
   tower_ingress_type: Ingress 
+  tower_postgres_sslmode: prefer
+  tower_image: quay.io/ansible/awx:19.0.0
+  tower_replicas: 1
   # service is clusterIP by default _type: Ingress changes to nodePort
   tower_web_resource_requirements:
     requests:
