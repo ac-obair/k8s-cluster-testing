@@ -40,19 +40,15 @@ kubectl get/describe order <order> --all-namespaces
 Note that the ingress url for awx can be set as part of `awx.yaml`  and needs to be added to the /etc/hosts file when testing. `127.0.0.1       kubernetes.docker.internal awx.example.com`
 
 Deploy the awx-operator reconsiliation loop. This is deployed to the default namespace by default.
-```
-kubectl apply -f awx/awx-operator.yaml
-```
-Deploy awx task runners
-```
-kubectl apply -f awx/awx.yaml
-```
-This will give you a fully working awx installation and you can connect to an external postgres db using the instructions below. 
-```
-awx-5fbbbf7b79-7z2fk           4/4     Running   0          4h56m
-awx-operator-57bcb58f5-2v7kj   1/1     Running   1          5h16m
-awx-postgres-0                 1/1     Running   1          5h15m
-```
+
+![installation](https://user-images.githubusercontent.com/20089429/114378094-44104180-9b7f-11eb-80d4-9c322a8b6116.gif)
+
+
+This will give you a fully working awx installation.
+
+<img width="676" alt="Screenshot 2021-04-12 at 10 58 52" src="https://user-images.githubusercontent.com/20089429/114377085-2db5b600-9b7e-11eb-8f57-61766e01b45c.png">
+
+
 Get the frontend nodePort url for connectioning to awx:
 ```
 # spits out username and password
