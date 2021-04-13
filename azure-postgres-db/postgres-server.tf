@@ -16,7 +16,7 @@ resource "azurerm_postgresql_server" "awx-external-postgres" {
   auto_grow_enabled                = false
 
   administrator_login              = "psqladminun"
-  administrator_login_password     = "LetjIma1o3uQYbs2cq1GJYkI!"
+  administrator_login_password     = data.azurerm_key_vault_secret.awx-postgres-pass.value
   version                          = "11"
   ssl_enforcement_enabled          = true
   ssl_minimal_tls_version_enforced = "TLS1_2"
